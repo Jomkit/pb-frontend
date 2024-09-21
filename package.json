@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "typeRoots": ["node_modules/@types"],
   "scripts": {
     "dev": "vite",
     "test": "vitest",
