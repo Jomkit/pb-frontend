@@ -23,6 +23,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
 
+    "typeRoots": ["node_modules/@types", "./node_modules"],
     "types": ["vitest/globals"]
   },
   "include": ["src", "src/__tests__"]
