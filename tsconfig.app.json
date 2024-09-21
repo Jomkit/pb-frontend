@@ -23,7 +23,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
 
-    "types": ["vitest/global"]
+    "types": ["vitest/globals"]
   },
   "include": ["src", "src/__tests__"]
 }
