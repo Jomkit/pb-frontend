@@ -26,7 +26,7 @@ function App() {
 
   const [ currProjectId, setCurrProjectId ] = useLocalStorage("currProjectId");
   const [currTaskId, setCurrTaskId] = useLocalStorage("currTaskId");
-
+ 
   // contains username & id
   const [ currUserToken, setCurrUserToken ] = useLocalStorage("currUserToken"); 
   const [ currUser, setCurrUser ] = useState({} as IUser);
@@ -42,6 +42,8 @@ function App() {
         const userInfo = await Api.getUser(user.id);
         
         setCurrUser(userInfo.user as any);
+        console.log("currProjectId", currProjectId);
+        console.log("currTaskId", currTaskId);
         
       } catch(err: any){
         if(err instanceof InvalidTokenError){

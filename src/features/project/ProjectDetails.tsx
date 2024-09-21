@@ -24,6 +24,7 @@ const ProjectDetails = () => {
       setIsLoading(false);
     }
     getProject();
+    console.log("currProjectId", currProjectId);
     
   }, []);
   
