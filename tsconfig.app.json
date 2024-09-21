@@ -24,7 +24,7 @@
     "noFallthroughCasesInSwitch": true,
 
     "typeRoots": ["node_modules/@types", "./node_modules"],
-    "types": ["vitest/globals"]
+    "types": ["vite/client","vitest/globals"]
   },
-  "include": ["src", "src/__tests__"]
+  "include": ["src", "vite.config.ts", "src/__tests__", "vitest.config.ts"]
 }
