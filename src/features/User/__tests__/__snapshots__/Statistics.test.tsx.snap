@@ -1,0 +1,54 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`should match snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <div>
+      My Statistics
+    </div>
+    <table
+      class="table-auto w-full simple-border"
+    >
+      <thead
+        class="bg-green-200 simple-border"
+      >
+        <tr>
+          <th>
+            Project
+          </th>
+          <th>
+            Status
+          </th>
+          <th>
+            Total Time Spent
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            testProject 1
+          </td>
+          <td>
+            Active
+          </td>
+          <td>
+            5 minutes
+          </td>
+        </tr>
+        <tr>
+          <td>
+            testProject 2
+          </td>
+          <td>
+            Active
+          </td>
+          <td>
+            5 minutes
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</DocumentFragment>
+`;

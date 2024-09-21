@@ -1,0 +1,20 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`should match snapshot while loading projects 1`] = `
+<DocumentFragment>
+  <section
+    class="text-center items-start min-h-screen w-screen p-4 bg-cyan-400"
+  >
+    <h1>
+      Projects
+    </h1>
+    <div
+      class="p-10 justify-center"
+    >
+      <p>
+        Loading...
+      </p>
+    </div>
+  </section>
+</DocumentFragment>
+`;

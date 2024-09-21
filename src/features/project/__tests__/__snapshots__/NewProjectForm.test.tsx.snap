@@ -1,0 +1,58 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="m-8"
+  >
+    <h2>
+      Create New Project
+    </h2>
+    <form
+      action="#"
+    >
+      <div
+        class="rounded-lg border border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-800 flex flex-col text-start w-1/2 m-auto"
+        data-testid="flowbite-card"
+      >
+        <div
+          class="flex h-full flex-col justify-center gap-4 p-6"
+        >
+          <label
+            class="block text-gray-700 text-sm font-bold mb-2"
+            for="name"
+          >
+            name
+          </label>
+          <input
+            class="form-field1 focus:outline-none focus:shadow-outline"
+            id="name"
+            name="name"
+            type="text"
+            value=""
+          />
+          <label
+            class="block text-gray-700 text-sm font-bold mb-2"
+            for="note"
+          >
+            note
+          </label>
+          <input
+            class="form-field1 focus:outline-none focus:shadow-outline"
+            id="note"
+            name="note"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+      <button
+        class="btn bg-blue-700 text-white"
+        type="submit"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+</DocumentFragment>
+`;

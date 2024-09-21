@@ -1,0 +1,113 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`should match snapshot 1`] = `
+<DocumentFragment>
+  <section
+    class="text-center items-start min-h-screen w-screen p-4 bg-green-400"
+  >
+    <h1>
+      User Profile
+    </h1>
+    <div
+      class="p-10 justify-center"
+    >
+      <div
+        class="w-full lg:w-2/3 m-auto p-4 h-fit bg-white rounded-lg"
+      >
+        <div
+          class="w-full lg:w-2/3 m-auto p-4 simple-border"
+        >
+          <h2
+            class="text-bold"
+          >
+            testUser
+          </h2>
+          <div
+            class="text-start"
+          >
+            <p>
+              First Name: testFirst
+            </p>
+            <p>
+              Last Name: testLast
+            </p>
+            <p>
+              Email Address : test@email.com
+            </p>
+          </div>
+        </div>
+        <div
+          class="w-full lg:w-2/3 m-auto mt-10 p-4 simple-border"
+        >
+          <h2
+            class="text-bold"
+          >
+            Report
+          </h2>
+          <div
+            class="text-start"
+          >
+            <p>
+              Productive time today: 10 minutes, 0 milliseconds
+            </p>
+            <p>
+              Total time last week: 10 minutes, 0 milliseconds
+            </p>
+            <p>
+              Most productive day of the week (by average score): Thursday (1.5)
+            </p>
+          </div>
+        </div>
+        <div>
+          <div>
+            My Statistics
+          </div>
+          <table
+            class="table-auto w-full simple-border"
+          >
+            <thead
+              class="bg-green-200 simple-border"
+            >
+              <tr>
+                <th>
+                  Project
+                </th>
+                <th>
+                  Status
+                </th>
+                <th>
+                  Total Time Spent
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  testProject 1
+                </td>
+                <td>
+                  Active
+                </td>
+                <td>
+                  5 minutes
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  testProject 2
+                </td>
+                <td>
+                  Active
+                </td>
+                <td>
+                  5 minutes
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+</DocumentFragment>
+`;

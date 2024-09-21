@@ -1,0 +1,252 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`should match snapshot of loading complete 1`] = `
+<DocumentFragment>
+  <div
+    class="w-3/4 m-auto"
+  >
+    <div
+      class="text-start"
+    >
+      <button
+        class="btn bg-green-400 border-solid border-2 border-black"
+      >
+        New Task
+      </button>
+    </div>
+    <div
+      class="w-full mx-auto mb-2 p-6 bg-white border-solid border-2 border-black rounded-lg divide-y"
+    >
+      <div
+        class="text-center"
+      >
+        <h2>
+          testTask 1
+        </h2>
+        <h4>
+          Project id: 1
+        </h4>
+      </div>
+      <a
+        href="/tasks/1"
+      >
+        <p
+          class="btn bg-blue-500 text-white"
+        >
+          Click for more info
+        </p>
+      </a>
+      <div
+        class="m-2"
+      >
+        <div
+          class="w-full mx-auto mb-2 p-6 bg-white border-solid border-2 border-black rounded-lg divide-y"
+        >
+          <div
+            class="text-center"
+          >
+            <h2 />
+            <h4 />
+          </div>
+          <h2
+            class="text-start"
+          >
+            Timer
+          </h2>
+          <div
+            class="flex justify-between"
+          >
+            <div
+              class="text-center"
+            >
+              <h3
+                class="text-2xl bg-slate-200 w-fit m-auto px-4 py-1 rounded border-2 border-slate-500"
+              >
+                25:00
+              </h3>
+            </div>
+            <div
+              id="set-timer"
+            >
+              <button
+                class="btn bg-green-400"
+                id="start-btn"
+              >
+                <i
+                  class="fa-solid fa-play"
+                />
+              </button>
+              <button
+                class="btn bg-red-500"
+                id="restart-btn"
+              >
+                <i
+                  class="fa-solid fa-rotate-right"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="w-full mx-auto mb-2 p-6 bg-white border-solid border-2 border-black rounded-lg divide-y"
+    >
+      <div
+        class="text-center"
+      >
+        <h2>
+          testTask 2
+        </h2>
+        <h4>
+          Project id: 1
+        </h4>
+      </div>
+      <a
+        href="/tasks/2"
+      >
+        <p
+          class="btn bg-blue-500 text-white"
+        >
+          Click for more info
+        </p>
+      </a>
+      <div
+        class="m-2"
+      >
+        <div
+          class="w-full mx-auto mb-2 p-6 bg-white border-solid border-2 border-black rounded-lg divide-y"
+        >
+          <div
+            class="text-center"
+          >
+            <h2 />
+            <h4 />
+          </div>
+          <h2
+            class="text-start"
+          >
+            Timer
+          </h2>
+          <div
+            class="flex justify-between"
+          >
+            <div
+              class="text-center"
+            >
+              <h3
+                class="text-2xl bg-slate-200 w-fit m-auto px-4 py-1 rounded border-2 border-slate-500"
+              >
+                25:00
+              </h3>
+            </div>
+            <div
+              id="set-timer"
+            >
+              <button
+                class="btn bg-green-400"
+                id="start-btn"
+              >
+                <i
+                  class="fa-solid fa-play"
+                />
+              </button>
+              <button
+                class="btn bg-red-500"
+                id="restart-btn"
+              >
+                <i
+                  class="fa-solid fa-rotate-right"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="w-full mx-auto mb-2 p-6 bg-white border-solid border-2 border-black rounded-lg divide-y"
+    >
+      <div
+        class="text-center"
+      >
+        <h2>
+          testTask 3
+        </h2>
+        <h4>
+          Project id: 1
+        </h4>
+      </div>
+      <a
+        href="/tasks/3"
+      >
+        <p
+          class="btn bg-blue-500 text-white"
+        >
+          Click for more info
+        </p>
+      </a>
+      <div
+        class="m-2"
+      >
+        <div
+          class="w-full mx-auto mb-2 p-6 bg-white border-solid border-2 border-black rounded-lg divide-y"
+        >
+          <div
+            class="text-center"
+          >
+            <h2 />
+            <h4 />
+          </div>
+          <h2
+            class="text-start"
+          >
+            Timer
+          </h2>
+          <div
+            class="flex justify-between"
+          >
+            <div
+              class="text-center"
+            >
+              <h3
+                class="text-2xl bg-slate-200 w-fit m-auto px-4 py-1 rounded border-2 border-slate-500"
+              >
+                25:00
+              </h3>
+            </div>
+            <div
+              id="set-timer"
+            >
+              <button
+                class="btn bg-green-400"
+                id="start-btn"
+              >
+                <i
+                  class="fa-solid fa-play"
+                />
+              </button>
+              <button
+                class="btn bg-red-500"
+                id="restart-btn"
+              >
+                <i
+                  class="fa-solid fa-rotate-right"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`should match snapshot of loading view 1`] = `
+<DocumentFragment>
+  <p>
+    Loading...
+  </p>
+</DocumentFragment>
+`;

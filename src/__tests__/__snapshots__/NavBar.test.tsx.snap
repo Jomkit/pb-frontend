@@ -1,0 +1,77 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`NavBar Component > should match snapshot of logged-in user 1`] = `
+<DocumentFragment>
+  <nav
+    class="flex justify-between items-center mx-5"
+  >
+    <div
+      class="text-lg space-x-3"
+    >
+      <a
+        class="text-3xl"
+        href="/"
+      >
+        PB
+      </a>
+      <a
+        href="/tasks"
+      >
+        Tasks
+      </a>
+      <a
+        href="/projects"
+      >
+        Projects
+      </a>
+    </div>
+    <div
+      class="text-lg space-x-3"
+    >
+      <a
+        href="/profile"
+      >
+        testUser
+      </a>
+      <a
+        href="/"
+      >
+        Logout
+      </a>
+    </div>
+  </nav>
+</DocumentFragment>
+`;
+
+exports[`NavBar Component > should match snapshot of no logged-in user 1`] = `
+<DocumentFragment>
+  <nav
+    class="flex justify-between items-center mx-5"
+  >
+    <div
+      class="text-lg space-x-3"
+    >
+      <a
+        class="text-3xl"
+        href="/"
+      >
+        PB
+      </a>
+    </div>
+    <div
+      class="text-lg space-x-3"
+    >
+      <a
+        href="/login"
+      >
+        Login
+      </a>
+      <a
+        href="/signup"
+      >
+        Sign Up
+      </a>
+    </div>
+  </nav>
+</DocumentFragment>
+`;

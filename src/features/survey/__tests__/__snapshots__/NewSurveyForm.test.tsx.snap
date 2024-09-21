@@ -1,0 +1,114 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="m-8 space-y-4"
+  >
+    <form
+      action="#"
+    >
+      <div
+        class="mb-4"
+      >
+        <div
+          class="text-xl font-bold"
+          id="score"
+        >
+          <p>
+            Please rate productivity for the following task:
+          </p>
+          <p>
+            testTask 1
+          </p>
+        </div>
+        <div>
+          1 (not productive) - 5 (very productive)
+        </div>
+        <div
+          aria-labelledby="score"
+          class="space-x-4"
+          role="group"
+        >
+          <label>
+            <input
+              name="score"
+              type="radio"
+              value="1"
+            />
+            <span>
+              1
+            </span>
+          </label>
+          <label>
+            <input
+              name="score"
+              type="radio"
+              value="2"
+            />
+            <span>
+              2
+            </span>
+          </label>
+          <label>
+            <input
+              name="score"
+              type="radio"
+              value="3"
+            />
+            <span>
+              3
+            </span>
+          </label>
+          <label>
+            <input
+              name="score"
+              type="radio"
+              value="4"
+            />
+            <span>
+              4
+            </span>
+          </label>
+          <label>
+            <input
+              name="score"
+              type="radio"
+              value="5"
+            />
+            <span>
+              5
+            </span>
+          </label>
+        </div>
+      </div>
+      <div>
+        <label
+          class="text-xl font-bold"
+          for="description"
+        >
+          Notes
+        </label>
+        <textarea
+          class="form-field1 focus:outline-none focus:shadow-outline"
+          id="description"
+          name="description"
+          placeholder="Enter notes here..."
+          type="text"
+        />
+      </div>
+      <div>
+        <p>
+          Remember to take a break!
+        </p>
+      </div>
+      <button
+        class="btn bg-blue-700 text-white"
+        type="submit"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+</DocumentFragment>
+`;

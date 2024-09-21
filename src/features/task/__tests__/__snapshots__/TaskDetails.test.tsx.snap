@@ -1,0 +1,88 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`should match snapshot 1`] = `
+<DocumentFragment>
+  <section
+    class="text-center items-start min-h-screen w-screen p-4 bg-orange-400"
+  >
+    <h1>
+      Task Details
+    </h1>
+    <div
+      class="p-10 justify-center"
+    >
+      <div
+        class="w-full mx-auto mb-2 p-6 bg-white border-solid border-2 border-black rounded-lg divide-y"
+      >
+        <div
+          class="text-center"
+        >
+          <h2>
+            testTask 1
+          </h2>
+          <h4 />
+        </div>
+        <div>
+          <button
+            class="btn font-bold bg-red-400"
+          >
+            Delete
+          </button>
+        </div>
+        <div
+          class="m-2"
+        >
+          <div
+            class="w-full mx-auto mb-2 p-6 bg-white border-solid border-2 border-black rounded-lg divide-y"
+          >
+            <div
+              class="text-center"
+            >
+              <h2 />
+              <h4 />
+            </div>
+            <h2
+              class="text-start"
+            >
+              Timer
+            </h2>
+            <div
+              class="flex justify-between"
+            >
+              <div
+                class="text-center"
+              >
+                <h3
+                  class="text-2xl bg-slate-200 w-fit m-auto px-4 py-1 rounded border-2 border-slate-500"
+                >
+                  25:00
+                </h3>
+              </div>
+              <div
+                id="set-timer"
+              >
+                <button
+                  class="btn bg-green-400"
+                  id="start-btn"
+                >
+                  <i
+                    class="fa-solid fa-play"
+                  />
+                </button>
+                <button
+                  class="btn bg-red-500"
+                  id="restart-btn"
+                >
+                  <i
+                    class="fa-solid fa-rotate-right"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</DocumentFragment>
+`;

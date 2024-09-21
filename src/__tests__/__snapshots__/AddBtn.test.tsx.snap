@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`AddBtn > should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="text-start"
+  >
+    <button
+      class="btn bg-green-400 border-solid border-2 border-black"
+    >
+      New testAddBtn
+    </button>
+  </div>
+</DocumentFragment>
+`;
