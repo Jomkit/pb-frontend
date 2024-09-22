@@ -11,23 +11,23 @@ const newProjectSchema = Yup.object().shape({
 })
 
 const NewProjectForm = () => {
+    const currUser = useContext(userContext);
+    const navigate = useNavigate();
+    
     const initialProjectValues = {
         name: '',
         note: '',
     }
 
-    const currUser = useContext(userContext);
-    const navigate = useNavigate();
     
-    const handleSubmit = (values: {name: string, note: string}) => {
+    const handleSubmit = async (values: {name: string, note: string}) => {
         try{
-            console.log("Submitting values:", values);
-            Api.createUserProject(currUser.id!, values);
-            navigate("/projects");
+            await Api.createUserProject(currUser.id!, values);
+            navigate(0);
         }catch(err: any){
             console.error("Error detected in NewProjectForm:", (err[0] || err));
-            alert(err[0] || err);
-            navigate("/projects/new");
+            alert("Name already exists in app, please try another name");
+            navigate(0);
         }
     }
     

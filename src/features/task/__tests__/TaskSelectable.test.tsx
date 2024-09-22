@@ -23,11 +23,20 @@ afterEach(() => {
 })
 
 it("should render without crashing", () => {
-    render(<TaskSelectable />);
+    render(
+        <MemoryRouter>
+            <TaskSelectable />
+        </MemoryRouter>
+    );
 })
 
 it("should match snapshot loading view", () => {
-    const { asFragment } = render(<TaskSelectable />);
+    const { asFragment } = render(
+        <MemoryRouter>
+            <TaskSelectable />
+        </MemoryRouter>
+    );
+    
     expect(asFragment()).toMatchSnapshot();
 })
 

@@ -34,7 +34,6 @@ const Tasks = () => {
   useEffect(() => {
     const findTasksFromProject = async () => {
       const results = await Api.findProjectTasks(currProjectId as string);
-      console.log("tasks:", results); // Delete later
       if(results.length !== 0){
         setTasks(results);
       }
@@ -45,12 +44,10 @@ const Tasks = () => {
       setLoadingTasks(true);
       
       let currProject;
-      console.log("Projects", projects);
-      console.log("currProjectId", currProjectId);
+      
       if(projects.length === 0) return;
       currProject = projects.find((proj) => proj.id === currProjectId);
       setCurrProjectName(currProject!.name);
-      console.log("currProject", currProject);
       
       findTasksFromProject();
     }

@@ -10,24 +10,25 @@ const newTaskSchema = Yup.object().shape({
 })
 
 const NewTaskForm = () => {
+    const navigate = useNavigate();
     const initialTaskValues = {
         name: '',
     }
 
-    const navigate = useNavigate();
 
     // need to fix issue of sending curr user id,
     const currUser = useContext(userContext);
     const currProjectId = localStorage.getItem("currProjectId");
     
-    const handleSubmit = (values: {name: string}) => {
+    const handleSubmit = async (values: {name: string}) => {
         try{
-            Api.createTask(currProjectId as string, {userId: currUser.id, data: {...values}});
+            await Api.createTask(currProjectId as string, {userId: currUser.id, data: {...values}});
             navigate(0);         
 
         }catch(err: any){
             console.error("Error detected in NewTaskForm:", (err[0] || err));
-            alert(err[0] || err);
+            alert("Name already exists in app, please try another name");
+            navigate(0);
         }
     }
     

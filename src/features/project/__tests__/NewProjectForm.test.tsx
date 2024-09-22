@@ -27,7 +27,7 @@ it("should redirect to same page when successfully submitting form", async () =>
         const mod = await importOriginal<typeof import("react-router-dom")>();
         return {
             ...mod,
-            useNavigate: vi.fn(() => `redirected`)
+            useNavigate: vi.fn(() => vi.fn())
         };
     })
 

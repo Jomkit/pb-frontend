@@ -26,7 +26,7 @@ function App() {
 
   const [ currProjectId, setCurrProjectId ] = useLocalStorage("currProjectId");
   const [currTaskId, setCurrTaskId] = useLocalStorage("currTaskId");
- 
+
   // contains username & id
   const [ currUserToken, setCurrUserToken ] = useLocalStorage("currUserToken"); 
   const [ currUser, setCurrUser ] = useState({} as IUser);
@@ -88,7 +88,8 @@ function App() {
   }
 
   const newUserSetup = async ({userId, username}: {userId: number, username: string}) => {
-    const project = await Api.createUserProject(userId as number, {name: `${username}'s first project`, note: "This is my first project"});
+    const result = await Api.createUserProject(userId as number, {name: `${username}'s first project`, note: "This is my first project"});
+    const project = result.clockifyProject;
     const task = await Api.createTask(project.id, {userId: userId, data: {name: `${username}'s first task`}});
     setCurrProjectId(project.id);
     setCurrTaskId(task.id);

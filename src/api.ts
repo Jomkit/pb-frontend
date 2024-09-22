@@ -99,7 +99,7 @@ export default class Api {
     static async createUserProject(userId: number, data: object){
         const endpoint = "users/" + userId + "/projects";
         let results = await this.request(endpoint, "post", data);
-        return results.clockifyProject;
+        return results;
     }
     
     /** 

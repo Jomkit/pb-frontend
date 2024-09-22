@@ -4,6 +4,7 @@ import Project from "./Project"
 import { useState } from "react"
 import Popup from "../../components/Popup"
 import NewProjectForm from "./NewProjectForm"
+import Card from "../../components/Card"
 
 
 const ProjectList = ({projects}: {projects: IProject[]}) => {
@@ -26,9 +27,15 @@ const ProjectList = ({projects}: {projects: IProject[]}) => {
             <NewProjectForm />
           </Popup>
         )}
-      { projects.map((proj) => (
-        <Project key={proj.id} project={proj} />
-      ))}
+        {projects.length === 0 ? 
+        <Card title="No Projects">
+          <p>Get started by creating a new project</p>
+        </Card> 
+        : 
+          projects.map((proj) => (
+            <Project key={proj.id} project={proj} />
+          )) 
+        }
     </div>
   )
 }

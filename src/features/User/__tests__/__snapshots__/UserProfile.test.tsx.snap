@@ -54,7 +54,7 @@ exports[`should match snapshot 1`] = `
               Total time last week: 10 minutes, 0 milliseconds
             </p>
             <p>
-              Most productive day of the week (by average score): Thursday (1.5)
+              Most productive day of the week (by average score): Saturday (1.5)
             </p>
           </div>
         </div>

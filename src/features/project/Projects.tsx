@@ -3,17 +3,11 @@ import Frame from '../../components/Frame'
 import ProjectList from './ProjectList'
 import Api from '../../api'
 import userContext from '../../components/contexts/userContext'
+import { IProject } from '../../types'
 
 const Projects = () => {
-  const initialState = [
-    {
-      id: "1",  
-      name: "Example project",
-      note: "Notes about example project"
-    }
-  ]
 
-  const [projects, setProjects] = useState(initialState);
+  const [projects, setProjects] = useState([] as IProject[]);
   const [isLoading, setIsLoading] = useState(true);
   const {id} = useContext(userContext);
   const userId = id;
