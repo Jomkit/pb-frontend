@@ -4,17 +4,19 @@ import userContext from '../../components/contexts/userContext';
 import { useContext } from 'react';
 import Api from '../../api';
 import { useNavigate } from 'react-router-dom';
+import alertContext from '../../components/contexts/alertContext';
 
 const newProjectSchema = Yup.object().shape({
     name: Yup.string().required(),
     note: Yup.string().notRequired(),
 })
 
-const NewProjectForm = () => {
+const NewProjectForm = ({closePopup}: {closePopup: () => void}) => {
     const currUser = useContext(userContext);
+    const { setAlertMessage, setAlertOn } = useContext(alertContext);
     const navigate = useNavigate();
     
-    const initialProjectValues = {
+    const initialProjectValues = { 
         name: '',
         note: '',
     }
@@ -23,11 +25,17 @@ const NewProjectForm = () => {
     const handleSubmit = async (values: {name: string, note: string}) => {
         try{
             await Api.createUserProject(currUser.id!, values);
-            navigate(0);
+            setAlertMessage(`Project ${values.name} created! Lets add some tasks!`);
+            setAlertOn(true);
+            
+            navigate("/tasks");
         }catch(err: any){
+            // Temporary fix for Clockify API restriction on unique names
             console.error("Error detected in NewProjectForm:", (err[0] || err));
-            alert("Name already exists in app, please try another name");
-            navigate(0);
+            setAlertMessage("Project name already exists in app, please try another name");
+            setAlertOn(true);
+            
+            closePopup();
         }
     }
     

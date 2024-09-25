@@ -73,7 +73,7 @@ exports[`Home component > should match snapshot of logged-in user after loading 
               testTask 1
             </h2>
             <h4>
-              Project id: 1
+              Project: Unassigned
             </h4>
           </div>
           <a

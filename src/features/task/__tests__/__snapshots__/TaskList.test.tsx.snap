@@ -24,7 +24,7 @@ exports[`should match snapshot of loading complete 1`] = `
           testTask 1
         </h2>
         <h4>
-          Project id: 1
+          Project: testProject 1
         </h4>
       </div>
       <a
@@ -99,7 +99,7 @@ exports[`should match snapshot of loading complete 1`] = `
           testTask 2
         </h2>
         <h4>
-          Project id: 1
+          Project: testProject 1
         </h4>
       </div>
       <a
@@ -174,7 +174,7 @@ exports[`should match snapshot of loading complete 1`] = `
           testTask 3
         </h2>
         <h4>
-          Project id: 1
+          Project: testProject 1
         </h4>
       </div>
       <a

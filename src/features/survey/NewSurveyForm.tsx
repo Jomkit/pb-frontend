@@ -2,6 +2,8 @@ import { ErrorMessage, Field, Form, Formik } from "formik"
 import * as Yup from "yup"
 import Api from "../../api"
 import { ITask } from "../../types"
+import alertContext from "../../components/contexts/alertContext"
+import { useContext } from "react"
 
 const newSurveySchema = Yup.object().shape({
     score: Yup.number().required().oneOf([1, 2, 3, 4, 5]),
@@ -9,21 +11,33 @@ const newSurveySchema = Yup.object().shape({
 })
 
 const NewSurveyForm = ({projectId, task, timerId, closePopup}: {projectId: string, task: ITask, timerId: string, closePopup: () => void}) => {
+    const { setAlertMessage, setAlertOn } = useContext(alertContext);
+    
     const initialValues = {
         score: 0,
         description: ""
     }
     
     const handleSubmit = (values: {score: number, description: string}) => {
-        console.log("Submitting Survey...");
-        console.log(values);
-        const data = {
-            projectId: projectId,
-            taskId: task.id,
-            timerId: timerId,
-            ...values
+        try{
+            const data = {
+                projectId: projectId,
+                taskId: task.id,
+                timerId: timerId,
+                ...values
+            }
+            Api.createSurvey(data);
+
+            setAlertMessage("Survey created!");
+            setAlertOn(true);
+            closePopup();
+
+        }catch(err: any){
+            console.error("Error detected in NewSurveyForm:", (err[0] || err));
+            setAlertMessage("Error creating survey");
+            setAlertOn(true);
+            closePopup();
         }
-        Api.createSurvey(data);
         
     }
     

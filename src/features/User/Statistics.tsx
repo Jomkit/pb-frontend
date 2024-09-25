@@ -13,7 +13,6 @@ const Statistics = ({userId}: {userId: number}) => {
       const allProjectsCall = await Api.getUserProjects(userId);
       
       setAllProjects(allProjectsCall);
-      console.log("All projects", allProjectsCall);
     }
 
     getReport();

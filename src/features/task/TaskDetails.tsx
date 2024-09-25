@@ -4,20 +4,21 @@ import Card from '../../components/Card';
 import Timer from '../timer/Timer';
 import { ITask } from '../../types';
 import Api from '../../api';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import alertContext from '../../components/contexts/alertContext';
 
 const TaskDetails = () => {
-  // const projectId = localStorage.get("currProjectId");
+  const {setAlertMessage, setAlertOn} = useContext(alertContext);
   const { state }: {state: ITask} = useLocation();
   const navigate = useNavigate();
   const [deleteBtnDisabled, setDeleteBtnDisabled] = useState(false);
 
   const handleDelete = async () => {
     setDeleteBtnDisabled(true);
-    const deletedTask = await Api.deleteTask(state.projectId as string, state.id as string);
+    const deletedTaskMessage = await Api.deleteTask(state.projectId as string, state.id as string);
+    setAlertMessage(deletedTaskMessage);
+    setAlertOn(true);
 
-    console.log(deletedTask);
-    alert(deletedTask);
     navigate("/tasks");
   }
 

@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import { IUser } from './types';
+import { IProject, ITask, ITaskData, IUser } from './types';
 
 export default class Api {
     // store token for interacting with clockify api here
@@ -51,11 +51,11 @@ export default class Api {
     /** 
      * For new users to register
      * 
-     * @param {object} user - The user object.
+     * @param {IUser} user - The user object.
      * @returns { string } token - The token of the user.
      */
     static async register(user: IUser) {
-        const res = await this.request("auth/register", "post", user);
+        const res: IUser = await this.request("auth/register", "post", user);
         // console.log("In api register", res);
         return res.token;
     }
@@ -92,11 +92,11 @@ export default class Api {
      * POST /users/{userId}/projects
      * 
      * @param {number} userId - The id of the user.
-     * @param {object} data - The data of the project, contains {name, note}
+     * @param {IProject} data - The data of the project, contains {name, note}
      * 
      * @returns {object} - clockifyProject: {ClockifyProject}
      */
-    static async createUserProject(userId: number, data: object){
+    static async createUserProject(userId: number, data: IProject){
         const endpoint = "users/" + userId + "/projects";
         let results = await this.request(endpoint, "post", data);
         return results;
@@ -128,10 +128,10 @@ export default class Api {
      * Create a new task in Clockify with specific project from API
      * 
      */
-    static async createTask(projectId: string, data: object){
+    static async createTask(projectId: string, data: ITaskData){
         
         const endpoint = `projects/${projectId}/tasks`;
-        let results = await this.request(endpoint, "post", data);
+        let results: ITask = await this.request(endpoint, "post", data);
         return results;
     }
 
@@ -139,7 +139,7 @@ export default class Api {
      * Retrieves the tasks associated with a specific project from the Clockify API.
      *
      * @param {string} projectId - The ID of the project for which to retrieve tasks.
-     * @return {object[]} An array of task objects associated with the project.
+     * @return {ITask[]} An array of task objects associated with the project.
      */
     static async findProjectTasks(projectId: string){
         const endpoint = `projects/${projectId}/tasks`;
@@ -152,11 +152,11 @@ export default class Api {
      * 
      * @param {string} projectId - The ID of the project for which to retrieve tasks.
      * @param {string} taskId - The ID of the task to retrieve.
-     * @returns {object} - The task object.
+     * @returns {Itask} - The task object.
      */
     static async findTaskById(projectId: string, taskId: string){
         const endpoint = `projects/${projectId}/tasks/${taskId}`;
-        let results = await this.request(endpoint);
+        let results: ITask = await this.request(endpoint);
         return results;
     }
 

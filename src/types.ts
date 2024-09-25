@@ -1,5 +1,5 @@
 interface IProject {
-    id: string,
+    id?: string,
     name: string,
     note: string
 }
@@ -13,7 +13,25 @@ interface ITask {
     status?: string
 }
 
-// Not sure this one is needed yet
+interface ITaskData {
+    userId: number,
+    data: {
+        name: string,
+        status?: string,
+        estimate?: string
+    }
+}
+
+interface ITimer {
+    id: string,
+    projectId: string,
+    taskId: string,
+    timeInterval: {
+        start: string,
+        end?: string
+    }
+}
+
 interface ISurvey {
     id?: string,
     projectId: string,
@@ -25,6 +43,7 @@ interface ISurvey {
 
 interface IUser {
     id?: number,
+    token?: string,
     username: string,
     password?: string,
     firstName?: string,
@@ -32,4 +51,4 @@ interface IUser {
     email?: string
 }
 
-export type { IProject, ITask, ISurvey, IUser }
+export type { IProject, ITask, ITaskData, ITimer, ISurvey, IUser }

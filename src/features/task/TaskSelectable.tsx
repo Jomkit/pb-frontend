@@ -1,8 +1,7 @@
-import { ITask } from "../../types"
+import { IProject, ITask } from "../../types"
 import { useContext, useEffect, useState } from "react"
 import Api from "../../api"
 import Task from "./Task"
-import useLocalStorage from "../../components/hooks/useLocalStorage"
 import CustomDropdown from "../../components/CustomDropdown"
 import AddBtn from "../../components/AddBtn"
 import Popup from "../../components/Popup"
@@ -11,33 +10,31 @@ import userContext from "../../components/contexts/userContext"
 import Card from "../../components/Card"
 import { useNavigate } from "react-router-dom"
 
-const TaskSelectable
- = () => {
+const TaskSelectable = () => {
+   const navigate = useNavigate();
+   const user = useContext(userContext);
+   const [currTaskId, setCurrTaskId] = useState<string>();
 
-  const user = useContext(userContext);
   const [tasks, setTasks] = useState([] as ITask[]);
-  const [currTaskId, setCurrTaskId] = useLocalStorage("currTaskId", "undefined");
-  const [currProjectId, setCurrProjectId] = useLocalStorage("currProjectId", "undefined");
+  const [projects, setProjects] = useState([] as IProject[]);
   const [popupOpen, setPopupOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const navigate = useNavigate();
 
   useEffect(() => {
     // Get all of a user's projects and then get all tasks of those projects
     const getAllTasks = async () => {
       if(!user.id) return;
-      const projects = await Api.getUserProjects(user.id!);
-      if(projects.length === 0){
+      const fetchedProjects = await Api.getUserProjects(user.id!);
+      if(fetchedProjects.length === 0){
         console.log("no projects");
         alert("Please create a project first");
         navigate("/projects");
         return;
       }
-      const taskPromises = projects.map( (project: any) => {
+      const taskPromises = fetchedProjects.map( (project: any) => {
         return Api.findProjectTasks(project.id);
       });
       if(taskPromises.length === 0){
-        console.log("no tasks");
         setIsLoading(false);
         return;
       }
@@ -45,10 +42,9 @@ const TaskSelectable
       const loadedTasks = await Promise.all(taskPromises).then((values) => {
         return values.flat(Infinity);
       })
-      
-      if(currProjectId == "undefined") setCurrProjectId(projects[0].id);
-      if(currTaskId == "undefined") setCurrTaskId(loadedTasks[0].id);
+
       setTasks(loadedTasks);
+      setProjects(fetchedProjects);
       setIsLoading(false);
     }
     getAllTasks();
@@ -76,7 +72,7 @@ const TaskSelectable
         <CustomDropdown label="tasks" items={tasks} handleClick={handleClick} />
         {popupOpen && (
           <Popup close={close}>
-            <NewTaskForm />
+            <NewTaskForm closePopup={close} projects={projects} />
           </Popup>
         )}
         <div className="w-full lg:w-3/4 m-auto">
@@ -85,8 +81,11 @@ const TaskSelectable
           <Card title="No tasks">Get started by creating a new task.</Card>
           
           : 
-            (currTaskId !== "undefined" ? 
-            <Task task={tasks.filter((task: ITask) => task.id === currTaskId)[0]} />
+            (currTaskId ? 
+            <Task 
+              projectName={projects.filter((project: IProject) => project.id === tasks.filter((task: ITask) => task.id === currTaskId)[0].projectId)[0].name}   
+              task={tasks.filter((task: ITask) => task.id === currTaskId)[0]} 
+            />
             :
             <Task task={tasks[0]} />
             )

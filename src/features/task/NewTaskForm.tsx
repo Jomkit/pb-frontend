@@ -1,41 +1,74 @@
 import * as Yup from 'yup';
-import DynamicForm from '../../components/DynamicForm';
 import userContext from '../../components/contexts/userContext';
 import { useContext } from 'react';
 import Api from '../../api';
 import { useNavigate } from 'react-router-dom';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { IProject } from '../../types';
+import alertContext from '../../components/contexts/alertContext';
 
-const newTaskSchema = Yup.object().shape({
-    name: Yup.string().required(),
-})
 
-const NewTaskForm = () => {
+const NewTaskForm = ({projects, closePopup}: {projects: IProject[], closePopup: () => void}) => {
     const navigate = useNavigate();
     const initialTaskValues = {
+        projectId: "",
         name: '',
     }
-
-
-    // need to fix issue of sending curr user id,
-    const currUser = useContext(userContext);
-    const currProjectId = localStorage.getItem("currProjectId");
     
-    const handleSubmit = async (values: {name: string}) => {
+    const currUser = useContext(userContext);
+    const { setAlertMessage, setAlertOn } = useContext(alertContext);
+    
+    const newTaskSchema = Yup.object().shape({
+        projectId: Yup.string().required().oneOf(projects.map( project => project.id!)),
+        name: Yup.string().required(),
+    })
+
+    const handleSubmit = async (values: {projectId: string, name: string}) => {
         try{
-            await Api.createTask(currProjectId as string, {userId: currUser.id, data: {...values}});
-            navigate(0);         
+            const {projectId, name} = values;
+            console.log("values", values);
+            await Api.createTask(projectId as string, {userId: currUser.id!, data: {name: name}});
+            setAlertMessage(`Task ${name} created!`);
+            setAlertOn(true);
+            navigate('/');
 
         }catch(err: any){
+            // Temporary fix for Clockify API restriction on unique names
             console.error("Error detected in NewTaskForm:", (err[0] || err));
-            alert("Name already exists in app, please try another name");
-            navigate(0);
+            setAlertMessage("Task name already exists in app, please try another name");
+            setAlertOn(true);
+
+            closePopup();
         }
     }
     
   return (
-    <div className='m-8'>
+    <div className='m-8 space-y-3'>
         <h2>Create New Task</h2>
-        <DynamicForm initialValues={initialTaskValues} schema={newTaskSchema} handleSubmit={handleSubmit} />
+        
+        <Formik
+        initialValues={initialTaskValues}
+        validationSchema={newTaskSchema}
+        onSubmit={handleSubmit}>
+            <Form className='flex flex-col space-y-5'>
+                <div>
+                    <Field className="form-field1 focus:outline-none focus:shadow-outline" as="select" aria-label="projectId" name="projectId">
+                        <option value="">Select Project</option>
+                        {projects.map( (project) => (
+                            <option key={project.id} value={project.id}>{project.name}</option>
+                        ))}
+                    </Field>
+                    <ErrorMessage className='text-red-500' name="projectId" component="div" />
+                </div>
+
+                <div>
+                    <Field className="form-field1 focus:outline-none focus:shadow-outline" name="name" type="text" placeholder="Task Name" />
+                    <ErrorMessage className='text-red-500' name="name" component="div" />
+                </div>
+                
+                <button className='btn bg-green-400' type="submit">Submit</button>
+            </Form>
+        </Formik>
     </div>
   )
 }

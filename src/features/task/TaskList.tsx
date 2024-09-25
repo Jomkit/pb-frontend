@@ -1,4 +1,4 @@
-import { ITask } from '../../types'
+import { IProject, ITask } from '../../types'
 import Task from './Task'
 import AddBtn from '../../components/AddBtn'
 import { useState } from 'react';
@@ -6,7 +6,7 @@ import NewTaskForm from './NewTaskForm';
 import Popup from '../../components/Popup';
 import Card from '../../components/Card';
 
-const TaskList = ({loading, tasks}: {loading: boolean, tasks: ITask[]}) => {
+const TaskList = ({loading, projects, tasks}: {loading: boolean, projects: IProject[], tasks: ITask[]}) => {
   const [popupOpen, setPopupOpen] = useState(false);
   
   const addTask = () => {
@@ -23,7 +23,7 @@ const TaskList = ({loading, tasks}: {loading: boolean, tasks: ITask[]}) => {
         <AddBtn handleClick={addTask} btnName="Task"/>
         {popupOpen && (
           <Popup close={close}>
-            <NewTaskForm />
+            <NewTaskForm projects={projects} closePopup={close} />
           </Popup>
         )}
         {
@@ -34,7 +34,7 @@ const TaskList = ({loading, tasks}: {loading: boolean, tasks: ITask[]}) => {
           </Card>
           :
           tasks.map((task: any) => (
-            <Task key={task.id} task={task}/>
+            <Task key={task.id} task={task} projectName={projects.find((project: any) => project.id === task.projectId)!.name}/>
           ))
         }
     </div>

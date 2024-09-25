@@ -40,7 +40,7 @@ exports[`should match snapshot after loading complete 1`] = `
                 testTask 1
               </h2>
               <h4>
-                Project id: Unassigned
+                Project: Unassigned
               </h4>
             </div>
             <a
@@ -115,7 +115,7 @@ exports[`should match snapshot after loading complete 1`] = `
                 testTask 2
               </h2>
               <h4>
-                Project id: Unassigned
+                Project: Unassigned
               </h4>
             </div>
             <a

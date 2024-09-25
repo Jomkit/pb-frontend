@@ -1,8 +1,12 @@
 import { render } from "@testing-library/react"
 import TaskDetails from "../TaskDetails"
 import { MemoryRouter } from "react-router-dom";
+import alertContext from "../../../components/contexts/alertContext";
 import userEvent from "@testing-library/user-event";
 import Api from "../../../api";
+
+const mockedSetAlertMessage = vi.fn();
+const mockedSetAlertOn = vi.fn();
 
 beforeEach(() => {
     vi.mock("../../../api");
@@ -21,7 +25,9 @@ afterEach(() => {
 it("should render without crashing", () => {
     render(
         <MemoryRouter>
-            <TaskDetails />
+            <alertContext.Provider value={{setAlertMessage: mockedSetAlertMessage, setAlertOn: mockedSetAlertOn}} >
+                <TaskDetails />
+            </alertContext.Provider>
         </MemoryRouter>
     );
 })
@@ -29,7 +35,9 @@ it("should render without crashing", () => {
 it("should match snapshot", () => {
     const { asFragment } = render(
         <MemoryRouter>
-            <TaskDetails />
+            <alertContext.Provider value={{setAlertMessage: mockedSetAlertMessage, setAlertOn: mockedSetAlertOn}} >
+                <TaskDetails />
+            </alertContext.Provider>
         </MemoryRouter>
     );
     expect(asFragment()).toMatchSnapshot();
@@ -41,7 +49,9 @@ it("should call Api.deleteTask when delete button pressed", async () => {
     
     const { findByText } = render(
         <MemoryRouter>
-            <TaskDetails />
+            <alertContext.Provider value={{setAlertMessage: mockedSetAlertMessage, setAlertOn: mockedSetAlertOn}} >
+                <TaskDetails />
+            </alertContext.Provider>
         </MemoryRouter>
     );
     const deleteBtn = await findByText("Delete");
@@ -58,7 +68,9 @@ it("should disable delete button after it is pressed", async () => {
     
     const { findByText } = render(
         <MemoryRouter>
-            <TaskDetails />
+            <alertContext.Provider value={{setAlertMessage: mockedSetAlertMessage, setAlertOn: mockedSetAlertOn}} >
+                <TaskDetails />
+            </alertContext.Provider>
         </MemoryRouter>
     );
     const deleteBtn = await findByText("Delete");

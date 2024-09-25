@@ -22,6 +22,24 @@ const testTasks = [
     }
 ]
 
+const testProjects = [
+    {
+        id: "1",
+        name: "testProject 1",
+        note: "testNote"
+    },
+    {
+        id: "2",
+        name: "testProject 2",
+        note: "testNote"
+    },
+    {
+        id: "3",
+        name: "testProject 3",
+        note: "testNote"
+    }
+]
+
 const testUser = {
     id: 1,
     username: "testUser",
@@ -37,11 +55,11 @@ afterEach(() => {
 })
 
 it("should render without crashing", () => {
-    render(<TaskList loading={loading} tasks={testTasks} />);
+    render(<TaskList loading={loading} projects={[]} tasks={testTasks} />);
 })
 
 it("should match snapshot of loading view", () => {
-    const { asFragment } = render(<TaskList loading={loading} tasks={testTasks} />);
+    const { asFragment } = render(<TaskList loading={loading} projects={testProjects} tasks={testTasks} />);
     expect(asFragment()).toMatchSnapshot();
 })
 
@@ -50,7 +68,7 @@ it("should match snapshot of loading complete", async () => {
     const { asFragment, findAllByText } = render(
         <MemoryRouter>
             <userContext.Provider value={testUser}>
-            <TaskList loading={loading} tasks={testTasks} />
+            <TaskList loading={loading} projects={testProjects} tasks={testTasks} />
             </userContext.Provider>
 
         </MemoryRouter>
@@ -67,7 +85,7 @@ it("should bring up popup on clicking New Task button", async () => {
     const { findByText } = render(
         <MemoryRouter>
             <userContext.Provider value={testUser}>
-            <TaskList loading={loading} tasks={testTasks} />
+            <TaskList loading={loading} projects={testProjects} tasks={testTasks} />
             </userContext.Provider>
         </MemoryRouter>
     );
@@ -89,7 +107,7 @@ it("should close popup on clicking close button", async () => {
     const { findByText } = render(
         <MemoryRouter>
             <userContext.Provider value={testUser}>
-            <TaskList loading={loading} tasks={testTasks} />
+            <TaskList loading={loading} projects={testProjects} tasks={testTasks} />
             </userContext.Provider>
         </MemoryRouter>
     );

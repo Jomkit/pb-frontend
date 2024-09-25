@@ -24,7 +24,7 @@ const ProjectList = ({projects}: {projects: IProject[]}) => {
       <AddBtn handleClick={addProject} btnName="Project"/>
       {popupOpen && (
           <Popup close={close}>
-            <NewProjectForm />
+            <NewProjectForm closePopup={close} />
           </Popup>
         )}
         {projects.length === 0 ? 

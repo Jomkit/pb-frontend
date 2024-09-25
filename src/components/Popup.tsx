@@ -1,4 +1,4 @@
-const Popup = ({children, close}: {children: any, close: () => void}) => {
+const Popup = ({children, close = () => {}}: {children: any, close: () => void}) => {
   return (
     <div className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-40">
       

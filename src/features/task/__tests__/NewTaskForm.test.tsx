@@ -3,12 +3,36 @@ import { MemoryRouter, useNavigate } from "react-router-dom"
 import NewTaskForm from "../NewTaskForm"
 import userEvent from "@testing-library/user-event"
 
+import alertContext from "../../../components/contexts/alertContext";
+
 vi.mock("../../../api");
+
+const mockedClosePopup = vi.fn();
+const mockedSetAlertMessage = vi.fn();
+const mockedSetAlertOn = vi.fn();
+
+const testProjects = [
+    {
+        id: "1",
+        name: "testProject 1",
+        note: "testNote"
+    },
+    {
+        id: "2",
+        name: "testProject 2",
+        note: "testNote"
+    },
+    {
+        id: "3",
+        name: "testProject 3",
+        note: "testNote"
+    }
+]
 
 it("Should render without crashing", () => {
     render(
         <MemoryRouter>
-            <NewTaskForm />
+            <NewTaskForm closePopup={mockedClosePopup} projects={testProjects} />
         </MemoryRouter>
     )
 })
@@ -16,7 +40,7 @@ it("Should render without crashing", () => {
 it("Should match snapshot", () => {
     const { asFragment, getByText } = render(
         <MemoryRouter>
-            <NewTaskForm />
+            <NewTaskForm closePopup={mockedClosePopup} projects={testProjects} />
         </MemoryRouter>
     )
 
@@ -34,17 +58,23 @@ it("Should match snapshot", () => {
             };
         })
 
-        const { getByLabelText, getByText } = render(
+        const { getByPlaceholderText, getByText, getByRole } = render(
             <MemoryRouter>
-                <NewTaskForm />
+                <alertContext.Provider value={{setAlertMessage: mockedSetAlertMessage, setAlertOn: mockedSetAlertOn}} >
+                    <NewTaskForm closePopup={mockedClosePopup} projects={testProjects} />
+                </alertContext.Provider>
             </MemoryRouter>
         );
 
         const submitBtn = getByText("Submit");
 
-        const nameInput = getByLabelText("name");
+        const projectSelect = getByRole("combobox", {name: "projectId"});
+        const nameInput = getByPlaceholderText("Task Name");
 
+        await user.selectOptions(projectSelect, ["1"]);
         await user.type(nameInput, "testName");
         await user.click(submitBtn);
         expect(useNavigate).toHaveBeenCalled();
+        expect(mockedSetAlertOn).toHaveBeenCalled();
+        expect(mockedSetAlertMessage).toHaveBeenCalled();
     })

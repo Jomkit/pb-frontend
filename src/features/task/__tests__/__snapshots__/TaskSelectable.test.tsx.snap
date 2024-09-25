@@ -64,7 +64,7 @@ exports[`should match snapshot loaded view 1`] = `
           testTask 1
         </h2>
         <h4>
-          Project id: 1
+          Project: Unassigned
         </h4>
       </div>
       <a

@@ -6,7 +6,6 @@ import Statistics from './Statistics';
 
 const UserProfile = () => {
   const user = useContext(userContext);
-  console.log(user);
   
   return (
     <Frame bgColor='bg-green-400' title='User Profile'>

@@ -3,11 +3,11 @@ import Card from '../../components/Card'
 import { ITask } from '../../types';
 import Timer from '../timer/Timer';
 
-const Task = ({task}: {task: ITask}) => {
+const Task = ({task, projectName}: {task: ITask, projectName?: string}) => {
   const { projectId, name } = task;
   
   return (
-    <Card title={name} subtitle={`Project id: ${projectId ? projectId : "Unassigned"}`}>
+    <Card title={name} subtitle={`Project: ${projectName ? projectName : "Unassigned"}`}>
     <Link to={`/tasks/${task.id}`} state={task}>
     <p className='btn bg-blue-500 text-white'>Click for more info</p>
     </Link>

@@ -22,11 +22,23 @@ afterEach(() => {
 })
 
 it("should render without crashing", () => {
-    render(<Tasks />);
+    render(
+        <MemoryRouter>
+            <userContext.Provider value={user}>
+                <Tasks />
+            </userContext.Provider>
+        </MemoryRouter>
+    );
 })
 
 it("should match snapshot of loading view", () => {
-    const { asFragment } = render(<Tasks />);
+    const { asFragment } = render(
+        <MemoryRouter>
+            <userContext.Provider value={user}>
+                <Tasks />
+            </userContext.Provider>
+        </MemoryRouter>
+    );
     expect(asFragment()).toMatchSnapshot();
 })
 
