@@ -1,7 +1,9 @@
 interface IProject {
     id?: string,
     name: string,
-    note: string
+    note: string,
+    duration?: string,
+    archived?: boolean
 }
 
 interface ITask {
@@ -28,7 +30,8 @@ interface ITimer {
     taskId: string,
     timeInterval: {
         start: string,
-        end?: string
+        end?: string,
+        duration?: string
     }
 }
 
@@ -41,6 +44,12 @@ interface ISurvey {
     description?: string
 }
 
+interface IDailyScore {
+    day: string,
+    avg: number,
+    scores: ISurvey[]
+}
+
 interface IUser {
     id?: number,
     token?: string,
@@ -51,4 +60,4 @@ interface IUser {
     email?: string
 }
 
-export type { IProject, ITask, ITaskData, ITimer, ISurvey, IUser }
+export type { IProject, ITask, ITaskData, ITimer, ISurvey, IDailyScore, IUser }

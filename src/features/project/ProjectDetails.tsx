@@ -4,11 +4,12 @@ import Frame from "../../components/Frame"
 import { useEffect, useState } from "react";
 import Api from "../../api";
 import TaskList from "../task/TaskList";
+import { IProject, ITask } from "../../types";
 
 const ProjectDetails = () => {
   const {projectId} = useParams();
-  const [project, setProject] = useState({} as any);
-  const [tasks, setTasks] = useState([] as any);
+  const [project, setProject] = useState({} as IProject);
+  const [tasks, setTasks] = useState([] as ITask[]);
   const [isLoading, setIsLoading] = useState(true);
   
   useEffect(() => {

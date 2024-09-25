@@ -9,7 +9,7 @@ const loginSchema = Yup.object().shape({
 
 const LoginForm = ({login}: {login: (username: string, password: string) => void}) => {
 
-  const handleSubmit = async (values: any, resetForm: Function) => {
+  const handleSubmit = async (values: {username: string, password: string}, resetForm: Function) => {
     try{
       await login(values.username, values.password);
 

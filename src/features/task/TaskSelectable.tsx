@@ -31,8 +31,8 @@ const TaskSelectable = () => {
         navigate("/projects");
         return;
       }
-      const taskPromises = fetchedProjects.map( (project: any) => {
-        return Api.findProjectTasks(project.id);
+      const taskPromises = fetchedProjects.map( (project: IProject) => {
+        return Api.findProjectTasks(project.id!);
       });
       if(taskPromises.length === 0){
         setIsLoading(false);
@@ -87,7 +87,10 @@ const TaskSelectable = () => {
               task={tasks.filter((task: ITask) => task.id === currTaskId)[0]} 
             />
             :
-            <Task task={tasks[0]} />
+            <Task 
+              projectName={projects.filter((project: IProject) => project.id === tasks[0].projectId)[0].name}
+              task={tasks[0]} 
+            />
             )
           
           }

@@ -33,8 +33,8 @@ const TaskList = ({loading, projects, tasks}: {loading: boolean, projects: IProj
             <p>Get started by creating a new task.</p>
           </Card>
           :
-          tasks.map((task: any) => (
-            <Task key={task.id} task={task} projectName={projects.find((project: any) => project.id === task.projectId)!.name}/>
+          tasks.map((task: ITask) => (
+            <Task key={task.id} task={task} projectName={projects.find((project: IProject) => project.id === task.projectId)!.name}/>
           ))
         }
     </div>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import Api from "../../api";
 import { Duration } from "luxon";
 import { calculateTotalDuration } from "../../utils/duration";
-import { ISurvey, ITimer } from "../../types";
+import { ISurvey, ITimer, IDailyScore } from "../../types";
 
 const SurveyReport = ({userId}: {userId: number}) => {
     const initialStats = {
@@ -10,7 +10,7 @@ const SurveyReport = ({userId}: {userId: number}) => {
         timeToday: "0 hours"
     }
     const [timeStatistics, setTimeStatistics] = useState(initialStats);
-    const [weeklyScores, setWeeklyScores] = useState([] as any[]);
+    const [weeklyScores, setWeeklyScores] = useState([] as IDailyScore[]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -24,8 +24,8 @@ const SurveyReport = ({userId}: {userId: number}) => {
             //Filters all user's timers to just those that started today
             const timersToday = res.timers.filter((timer: ITimer) => Date.parse(timer.timeInterval.start) >= new Date().setHours(0,0,0,0));
             
-            const durationsWeek = res.timers.map((timer: any) => timer.timeInterval.duration);
-            const durationsToday = timersToday.map((timer: any) => timer.timeInterval.duration);
+            const durationsWeek = res.timers.map((timer: ITimer) => timer.timeInterval.duration);
+            const durationsToday = timersToday.map((timer: ITimer) => timer.timeInterval.duration);
 
             const timeWeek: Duration = calculateTotalDuration(durationsWeek);
             const timeToday: Duration = calculateTotalDuration(durationsToday);
@@ -37,23 +37,19 @@ const SurveyReport = ({userId}: {userId: number}) => {
     }, []);
     
     useEffect(() => {
-        interface IDailyScore {
-            day: string,
-            scores: ISurvey[]
-        }
         
         const getReport = async(userId: number) => {
             const reportCall = await Api.createUserReport(userId);
             const allScores = await Api.getSurveys();
             console.log("allScores", allScores);
             const weeklyScoresCalculated : IDailyScore[] = [
-                {day: "Sunday", scores: []},
-                {day: "Monday", scores: []},
-                {day: "Tuesday", scores: []},
-                {day: "Wednesday", scores: []},
-                {day: "Thursday", scores: []},
-                {day: "Friday", scores: []},
-                {day: "Saturday", scores: []},
+                {day: "Sunday", scores: [], avg: 0},
+                {day: "Monday", scores: [], avg: 0},
+                {day: "Tuesday", scores: [], avg: 0},
+                {day: "Wednesday", scores: [], avg: 0},
+                {day: "Thursday", scores: [], avg: 0},
+                {day: "Friday", scores: [], avg: 0},
+                {day: "Saturday", scores: [], avg: 0},
             ]
             reportCall.usersTimers.map((timer: ITimer) => {
                 let date = new Date(timer.timeInterval.end!);
@@ -62,7 +58,7 @@ const SurveyReport = ({userId}: {userId: number}) => {
                 
                 weeklyScoresCalculated[day].scores.push(...groupedScores);
             });
-            const avgPerDay = weeklyScoresCalculated.map((entry: IDailyScore) => {
+            const avgPerDay: IDailyScore[] = weeklyScoresCalculated.map((entry: IDailyScore) => {
                 if(entry.scores.length > 0) {
                     const avg = entry.scores.reduce((a: number, b: ISurvey) => a + b.score, 0) / entry.scores.length;
                     return {day: entry.day, scores: entry.scores, avg: avg};
@@ -85,7 +81,7 @@ const SurveyReport = ({userId}: {userId: number}) => {
             <div className="text-start">
                 <p>Productive time today: {timeStatistics.timeToday}</p>
                 <p>Total time last week: {timeStatistics.timeWeek}</p>
-                <p>Most productive day of the week (by average score): {weeklyScores.reduce((a: any, b: any) => a.avg > b.avg ? a : b).day} ({weeklyScores.reduce((a: any, b: any) => a.avg > b.avg ? a : b).avg})</p>
+                <p>Most productive day of the week (by average score): {weeklyScores.reduce((a: IDailyScore, b: IDailyScore) => a.avg > b.avg ? a : b).day} ({weeklyScores.reduce((a: IDailyScore, b: IDailyScore) => a.avg > b.avg ? a : b).avg})</p>
             </div>
         </div>
     

@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import Api from '../../api';
 import { Duration } from 'luxon';
+import { IProject } from '../../types';
 
 const Statistics = ({userId}: {userId: number}) => {
   const [loading, setLoading] = useState(true);
-  const [allProjects, setAllProjects] = useState([] as any[]);
+  const [allProjects, setAllProjects] = useState([] as IProject[]);
   
   useEffect(() => {
     const getReport = async () => {
@@ -32,11 +33,11 @@ const Statistics = ({userId}: {userId: number}) => {
               </tr>
             </thead>
             <tbody>
-              {allProjects.map((project: any) => (
+              {allProjects.map((project: IProject) => (
               <tr key={project.id}>
                 <td>{project.name}</td>
                 <td>{project.archived ? "Complete" : "Active"}</td>
-                <td>{Duration.fromISO(project.duration).toHuman()}</td>
+                <td>{Duration.fromISO(project.duration!).toHuman()}</td>
               </tr>
                 
               ))}

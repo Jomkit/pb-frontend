@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 import userContext from '../../components/contexts/userContext';
 import { useContext } from 'react';
 import Api from '../../api';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { IProject } from '../../types';
 import alertContext from '../../components/contexts/alertContext';
@@ -10,6 +10,7 @@ import alertContext from '../../components/contexts/alertContext';
 
 const NewTaskForm = ({projects, closePopup}: {projects: IProject[], closePopup: () => void}) => {
     const navigate = useNavigate();
+    const location = useLocation();
     const initialTaskValues = {
         projectId: "",
         name: '',
@@ -30,7 +31,11 @@ const NewTaskForm = ({projects, closePopup}: {projects: IProject[], closePopup: 
             await Api.createTask(projectId as string, {userId: currUser.id!, data: {name: name}});
             setAlertMessage(`Task ${name} created!`);
             setAlertOn(true);
-            navigate('/');
+            if(location.pathname === "/tasks"){
+                navigate('/');
+            }else{
+                navigate('/tasks');
+            }
 
         }catch(err: any){
             // Temporary fix for Clockify API restriction on unique names

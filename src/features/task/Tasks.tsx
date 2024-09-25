@@ -25,8 +25,8 @@ const Tasks = () => {
         navigate("/projects");
         return;
       }
-      const taskPromises = fetchedProjects.map( (project: any) => {
-        return Api.findProjectTasks(project.id);
+      const taskPromises = fetchedProjects.map( (project: IProject) => {
+        return Api.findProjectTasks(project.id!);
       });
       if(taskPromises.length === 0){
         setIsLoading(false);
